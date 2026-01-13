@@ -67,16 +67,33 @@ public class Main {
     private static void adminMenu(Scanner scanner, EmployeeController employeeController, User currentUser) {
         while (true) {
             System.out.println("\nAdmin Menu:");
+            System.out.println("0. Register User");
             System.out.println("1. Add Employee");
             System.out.println("2. View Employees");
-            System.out.println("Update Employee");
+            System.out.println("3. Update Employee");
             System.out.println("4. Delete Employee");
-            System.out.println("3. Logout");
+            System.out.println("5. Logout");
             System.out.println("Choose an option: ");
 
             int choice = Integer.parseInt(scanner.nextLine());
 
             switch (choice) {
+                case 0 -> {
+                    System.out.print("Enter new username: ");
+                    String newUsername = scanner.nextLine();
+                    System.out.print("Enter new password: ");
+                    String newPassword = scanner.nextLine();
+                    System.out.print("Enter role ID (1 for Admin, 2 for HR): ");
+                    int roleId = Integer.parseInt(scanner.nextLine());
+
+                    AuthController authController = new AuthController(new AuthService(new UserDAOImpl()));
+                    User newUser = authController.register(newUsername, newPassword, roleId);
+                    if (newUser != null) {
+                        System.out.println("User registered successfully: " + newUser);
+                    } else {
+                        System.out.println("Failed to register user.");
+                    }
+                }
                 case 1 -> {
                     Employee emp = readEmployee(scanner, false);
                     boolean success = employeeController.addEmployee(emp);

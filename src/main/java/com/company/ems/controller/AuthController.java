@@ -15,4 +15,9 @@ public class AuthController {
     public User login(String username, String password) {
         return authService.login(username, password);
     }
+
+    public User register(String username, String password, int roleId) {
+        // Registration logic can be added here
+        return authService.register(username, password, roleId);
+    }
 }

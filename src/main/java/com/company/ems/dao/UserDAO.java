@@ -22,4 +22,7 @@ public interface UserDAO {
 
     // Login user
     User findByUsernameAndPassword(String username, String password);
+
+    //register user
+    User findByUsername(String username);
 }
