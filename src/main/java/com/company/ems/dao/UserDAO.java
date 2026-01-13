@@ -21,5 +21,8 @@ public interface UserDAO {
     boolean deleteUser(int id);
 
     // Login user
-    User loginUser(String username, String password);
+    User findByUsernameAndPassword(String username, String password);
+
+    //register user
+    User findByUsername(String username);
 }
